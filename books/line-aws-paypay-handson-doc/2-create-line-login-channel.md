@@ -69,7 +69,7 @@ Scopeは「profile」とすべて表示をクリックし、「chat_message.writ
 
 - ボットリンク機能
 ボットリンク機能は「Off」にチェックをつけて、「追加」ボタンを押しましょう。
-![](https://storage.googleapis.com/zenn-user-upload/42r828qc7o0kocflnwzs4ljzdth4)
+![](https://storage.googleapis.com/zenn-user-upload/3qin3g2dilsn0k3e3io8j27kai9p)
 
 - LIFF ID と LIFF URL
 LIFF ID と LIFF URL をメモしましょう。
