@@ -10,3 +10,11 @@ published: false
 price: 0
 chapters:
   - 1-introduction
+  - 2-create-line-login-channel
+  - 3-create-line-messaging-api-channel
+  - 4-setup-paypay-for-developers
+  - 5-setup-aws-cloud9
+  - 6-deploy-aws-backend
+  - 7-deploy-aws-frontend
+  - 8-validation
+  - 9-clean-up
