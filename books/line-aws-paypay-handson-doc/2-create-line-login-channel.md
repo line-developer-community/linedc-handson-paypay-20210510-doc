@@ -68,7 +68,7 @@ Scopeは「profile」とすべて表示をクリックし、「chat_message.writ
 ![](https://storage.googleapis.com/zenn-user-upload/ojmcafkfz0yc9njc15b60c2eh7wn)
 
 - ボットリンク機能
-ボットリンク機能は「Off」にチェックをつけて、「追加」ボタンを押しましょう。
+ボットリンク機能は「On」にチェックをつけて、「追加」ボタンを押しましょう。
 ![](https://storage.googleapis.com/zenn-user-upload/3qin3g2dilsn0k3e3io8j27kai9p)
 
 - LIFF ID と LIFF URL
