@@ -65,7 +65,7 @@ LIFFアプリ名は「テーブルオーダー」、サイズは「Full」を選
 
 - Scope
 Scopeは「profile」とすべて表示をクリックし、「chat_message.write」にチェックをつけましょう。
-![](https://storage.googleapis.com/zenn-user-upload/ge1k96mh5nkwwe06k5p6oyhjxj6g)
+![](https://storage.googleapis.com/zenn-user-upload/ojmcafkfz0yc9njc15b60c2eh7wn)
 
 - ボットリンク機能
 ボットリンク機能は「Off」にチェックをつけて、「追加」ボタンを押しましょう。
