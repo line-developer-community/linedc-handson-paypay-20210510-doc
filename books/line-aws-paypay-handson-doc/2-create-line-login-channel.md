@@ -50,6 +50,13 @@ LINEログインになっているか確認します。
 下記 開発者契約に同意し、チェックをして「作成」ボタンを押しましょう。
 ![](https://storage.googleapis.com/zenn-user-upload/o6zjh4ihmtazma4lm2xxs0qvclix)
 
+# チャネル基本設定
+
+- リンクされたボット
+さきほど作成したMessagingAPIのチャネルを選択し、更新を行います。
+![](https://storage.googleapis.com/zenn-user-upload/kqpp92ez0ipj52f8kllb2dtk0yc4)
+![](https://storage.googleapis.com/zenn-user-upload/271pv8l6h46sm9nis22la12tjqii)
+
 # LIFFの作成
 - 作成
 「LIFF」タブに移動して「追加」ボタンを押しましょう。
