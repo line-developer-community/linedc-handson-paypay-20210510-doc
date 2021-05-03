@@ -134,7 +134,7 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
       ItemListDBName: ItemListDB
       PaymentInfoDBName: PaymentInfoDB
       LINEChannelAccessTokenDBName: LINEChannelAccessTokenDBTableOrderDev
-      FrontS3BucketName: lineawspaypay20210510＜任意の値(例：メールアドレスの@より上の部分など)＞
+      FrontS3BucketName: lineawspaypay20210510＜任意の値で全て小文字(例：メールアドレスの@より上の部分など)＞
       LayerVersion: 1
       LoggerLevel: DEBUG
       LambdaMemorySize: 128
