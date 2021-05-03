@@ -57,6 +57,8 @@ https://miniapps.paypay.ne.jp/account/signin
 
 ![](https://storage.googleapis.com/zenn-user-upload/tg0v69mr1on557zgnci0sdysz6uz =400x)
 
+![](https://storage.googleapis.com/zenn-user-upload/dvhsmj52zp8la4d1vhb7ysciznqy =400x)
+
 ![](https://storage.googleapis.com/zenn-user-upload/vj61bask8sjc4bjfs9lgbccvyx42 =400x)
 
 ---
