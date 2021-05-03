@@ -53,7 +53,7 @@ https://miniapps.paypay.ne.jp/account/signin
 
 - [PayPay for Developers](https://developer.paypay.ne.jp/dashboard/homehttps://developer.paypay.ne.jp/dashboard/home) > テストユーザのタブ に記載されているテストユーザの情報(ユーザネーム、パスワード)を使い、PayPayサンドボックスアプリにログインしてください。
 
-![](https://storage.googleapis.com/zenn-user-upload/3g2yeo46q2evkpx3886pjzbkunhy)
+![](https://storage.googleapis.com/zenn-user-upload/ouzo0r9mn3cdyna522l59a27aznw)
 
 ![](https://storage.googleapis.com/zenn-user-upload/tg0v69mr1on557zgnci0sdysz6uz =400x)
 
