@@ -129,7 +129,7 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
       LinePayIsSandbox: True
       PayPayApiKey: PayPayApiKey
       PayPayApiSecret: PayPayApiSecret
-      PayPayApiMerchantPaymentId: PayPayApiMerchantPaymentId
+      PayPayApiMerchantId: PayPayApiMerchantId
       PayPayIsProd: False
       ItemListDBName: ItemListDB
       PaymentInfoDBName: PaymentInfoDB
