@@ -66,7 +66,7 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
       LoggerLevel: DEBUG
 ```
 
-- 以下コマンドの実行
+- 以下のコマンドを実行してデプロイします。
 
 ```shell
 cd ~/environment/line-api-use-case-table-order/backend/batch
@@ -149,7 +149,7 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
       # ### ACCESS LOG SETTING ###
 ```
 
-- 以下コマンドの実行
+- 以下のコマンドを実行してデプロイします。
 
 ```shell
 cd ~/environment/line-api-use-case-table-order/backend/APP
