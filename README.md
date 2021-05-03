@@ -1,5 +1,5 @@
-https://zenn.dev/zenn/articles/connect-to-github
-https://zenn.dev/zenn/articles/install-zenn-cli
+- https://zenn.dev/zenn/articles/connect-to-github
+- https://zenn.dev/zenn/articles/install-zenn-cli
 
 ```shell
 $ npm init --yes
