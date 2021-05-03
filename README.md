@@ -1,10 +1,20 @@
-下記のような感じで、いったんこのリポジトリにMarkdownファイル作って管理する。
-後でZennとかにMarkdownを移植する。
+https://zenn.dev/zenn/articles/connect-to-github
+https://zenn.dev/zenn/articles/install-zenn-cli
 
-* 01.md はじめに
-* 02.md LINE ログインチャネルの作成
-* 03.md Messaging API チャネルの作成
-* 04.md PayPayサンドボックス環境設定
-* 05.md AWSで環境構築
-* 06.md 動作確認する
-* 07.md クリーンアップ
+```shell
+$ npm init --yes
+$ npm install -D zenn-cli
+$ 
+
+👇新しい記事を作成する
+$ zenn new:article
+
+👇新しい本を作成する
+$ zenn new:book
+
+👇表示をプレビューする
+$ npx zenn preview --port 8080
+
+## 下記でローカル環境のZenn執筆状況がブラウザに表示して確認できる。
+## メニューバー Preview > Preview Running Application > Pop Out Into New Window
+```
