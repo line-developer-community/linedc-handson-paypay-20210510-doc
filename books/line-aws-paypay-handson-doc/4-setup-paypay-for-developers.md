@@ -1,5 +1,5 @@
 ---
-title: "PayPayサンドボックス環境設定"
+title: "PayPayサンドボックス利用設定"
 ---
 
 # PayPay for Developers 新規登録
