@@ -4,31 +4,43 @@ title: "バックエンドの構築手順"
 
 # バックエンドの構築手順
 
-## 周辺リソースのデプロイ
+## 概要
 
-本アプリでは以下の周辺リソースをデプロイする必要があります。
-
-1. 共通処理レイヤー(Layer)
-1. 定期実行バッチ(batch)
-
-### 1.共通処理レイヤー(Layer)
-
-AWS Lambda では複数 Lambda 関数で共通化して利用したい処理をレイヤーとして記述することが出来ます。
-本アプリではレイヤーを利用しているので、はじめに以下の手順で、レイヤーをデプロイしてください。
-
-- template.yaml の修正  
-  backend-> Layer フォルダ内の template.yaml を開き、EnvironmentMap の dev の以下のパラメータ項目を修正する。
-
-  - `LayerName` 任意のレイヤー名
-
-- 以下コマンドの実行
+AWS SAM(AWS サーバーレスアプリケーションモデル)を使い、下記の`APP`、`batch`、`Layer`のフォルダ内のリソースをそれぞれデプロイします。
 
 ```
-cd [backend -> Layerのフォルダ]
+line-api-use-case-table-order/
+  ├ backend/
+  │  ├ APP/
+  │     ├ ...
+  │  ├ batch/
+  │     ├ ...
+  │  └ Layer/
+  │     ├ ...
+  ...
+```
+
+- APP:メインの処理
+- batch:LINEアクセストークン定期更新・取得バッチ(短期アクセストークン有効期限 30日)
+- Layer:共通処理を内包、Lambda Layerとしてデプロイする
+
+## Layerフォルダのリソースをデプロイ(共通処理)
+
+- template.yaml の修正  
+下記ファイル内のパラメータを修正します。
+https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/Layer/template.yaml#L24
+
+```
+      LayerName: 任意のレイヤー名
+```
+
+- 以下のコマンドを実行してデプロイします。
+
+```shell
+cd ~/environment/line-api-use-case-table-order/backend/Layer
 sam build --use-container
 sam deploy --guided
-※プロファイル情報(default)以外を使用する場合は指定必要 sam deploy --guided --profile xxx
-    Stack Name : 任意のスタック名
+    Stack Name : line-aws-paypay-layer-20210510
     AWS Region : ap-northeast-1
     Parameter Environment: dev
     #Shows you resources changes to be deployed and require a 'Y' to initiate deploy Confirm changes before deploy [Y/n]: Y
@@ -41,39 +53,26 @@ sam deploy --guided
     Deploy this changeset? [y/N]: y
 ```
 
-- レイヤーバージョンをメモ  
-  デプロイ後、ターミナルの Outputs の項目に、レイヤー ARN とレイヤーバージョンが表示されるので、レイヤーバージョンをメモしておく。  
-  レイヤーバージョンは末尾の数字。  
-  ※バージョンはデプロイするたびに更新されるので、初めてのデプロイの場合バージョン 1 となっているのが正しいです。
-  ![コマンドプロンプトのOutput部の画像](images/out-put-description.png)
-
-- 【確認】AWS マネジメントコンソールで Lambda のコンソールを開き、左タブから「レイヤー」を選択し、今回デプロイしたレイヤーがあることを確認する。
-
-### 2.定期実行バッチ(batch)
-本アプリで必要な短期チャネルアクセストークン更新バッチをデプロイします。
-短期チャネルアクセストークンは有効期限が取得後 30 日間なので、有効期限の前に短期チャネルアクセストークンを再取得してテーブル更新をするバッチを毎日定刻に動作させています。  
-定刻にバッチを動作させるために、Amazon EventBridge([公式ドキュメント](https://docs.aws.amazon.com/ja_jp/eventbridge/latest/userguide/what-is-amazon-eventbridge.html))を用いています。  
-以下の手順に従い、バッチのデプロイを行ってください。
+## batchフォルダのリソースをデプロイ(アクセストークン定期更新・取得バッチ)
 
 - template.yaml の修正  
-  backend-> batch フォルダ内の template.yaml を開き、EnvironmentMap の dev の以下のパラメータ項目を修正する。
+下記ファイル内のパラメータを修正します。
+https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/batch/template.yaml#L23
 
-  - `LINEChannelAccessTokenDBName` 任意のテーブル名(短期チャネルアクセストークンを管理するテーブル)
-  - `EventBridgeName` 任意のイベントブリッジ名  
-    例) AccessTokenUpdateEvent
-  - `LayerVersion` 【1.共通処理レイヤー】の手順にてデプロイしたレイヤーのバージョン番号  
-    例）LayerVersion: 1
-  - `LoggerLevel` INFO or Debug  
-    例）INFO
+```
+      LINEChannelAccessTokenDBName: LINEChannelAccessTokenDBTableOrderDev
+      EventBridgeName: EventBridgeNameTableOrderDev
+      LayerVersion: Layer 1
+      LoggerLevel: DEBUG
+```
 
 - 以下コマンドの実行
 
-```
-cd [backend -> batch]のtemplate.yamlが配置されたフォルダ]
+```shell
+cd ~/environment/line-api-use-case-table-order/backend/batch
 sam build --use-container
 sam deploy --guided
-※プロファイル情報(default)以外を使用する場合は指定必要 sam deploy --guided --profile xxx
-    Stack Name : 任意のスタック名
+    Stack Name : line-aws-paypay-batch-20210510
     AWS Region : ap-northeast-1
     Parameter Environment: dev
     #Shows you resources changes to be deployed and require a 'Y' to initiate deploy Confirm changes before deploy [Y/n]: Y
@@ -87,62 +86,76 @@ sam deploy --guided
 ```
 
 - テーブルにチャネル ID とチャネルシークレットを登録する
-  - AWS マネジメントコンソールにログインし、DynamoDB のコンソールを開く
-  - 先ほど作成した「短期チャネルアクセストークンを管理するテーブル」にて項目の作成を行い、【LINE チャネルの作成】で作成したMessaging APIのチャネルのチャネル ID とチャネルシークレットを以下の通り登録する。
-    なお、チャネル ID とチャネルシークレットは[LINE Developers コンソール](https://developers.line.biz/console/)のチャネル基本設定にて確認可能。
+  - DynamoDBのコンソール画面にアクセス
+下記のURLからDynamoDBのコンソール画面を開き、先ほど作成したテーブルを開き、`項目の作成`ボタンを押します。
+https://ap-northeast-1.console.aws.amazon.com/dynamodb/home?region=ap-northeast-1#tables:selected=LINEChannelAccessTokenDBTableOrderDev;tab=items
+![](https://storage.googleapis.com/zenn-user-upload/kw2k8nmxpd5gceb493ww8x7hgb1g)
+  - 項目の作成画面でMessaging APIのチャネルの`チャネルID`と`チャネルシークレットキー`を登録します。（`チャネルID`と`チャネルシークレットキー`は[LINE Developers コンソール](https://developers.line.biz/console/)のチャネル基本設定にて確認できます。）
     - channelId: チャネル ID (文字列)
-    - channelSecret : チャネルシークレット(文字列)
-      ![チャネルアクセストークンの登録](images/channel-access-token-table-record.png)
+    - channelSecret: チャネルシークレット(文字列)
+      ![チャネルアクセストークンの登録]
+![](https://storage.googleapis.com/zenn-user-upload/ue8y75t0geax37ta0k5rjg1flx8n)
+![](https://storage.googleapis.com/zenn-user-upload/06suku5nij1vjehxdvssfuen3tdx)
+      
 - チャネルアクセストークン更新の Lambda 関数を実行する
   - AWS マネジメントコンソールにログインし、Lambda のコンソールを開く
-  - 先ほど作成した Lambda 関数(関数名は TableOrder-PutAccessToken-{Enviromentで指定した値})を開く
-  - Lambda 関数のコンソール右上、テストイベントの選択プルダウンにて「テストイベントの設定」を選択する
-  - 以下のようなウィンドウが開いたら、イベント名を入力し、イベント内容を空にして作成ボタンを押下する。
-    ![テストイベントの設定](images/test-event-set.png)
-  - Lambda 関数のコンソール右上、テストボタンを押下してテスト実行を行う
-- 【確認】AWS マネジメントコンソールの DynamoDB コンソールにて、チャネルアクセストークンのテーブル開き、本アプリで利用する LINE チャネル ID のデータに channelAccessToken,limitDate,updatedTime の項目が追加されていることを確認する。
+下記のURLからLambdaのコンソールにアクセスし、テストイベントの設定画面を表示します。
+https://ap-northeast-1.console.aws.amazon.com/lambda/home?region=ap-northeast-1#/functions/TableOrder-PutAccessToken-dev?tab=testing
+  - テストイベントの設定に必要な情報を入力し右上の`テスト`ボタンを押下してLambdaを実行します。
+    - テンプレート: `hello-world`を選択
+    - 名前: test
+    - 一番下のテキストボックス : `{}`
+![](https://storage.googleapis.com/zenn-user-upload/2uf5toitic64ldxs54rq6j7gqdlc)
 
-## アプリのデプロイ(APP)
+- 【確認】DynamoDBのテーブルに必要な情報が入ったかを確認
+下記のURLからDynamoDBのコンソール画面を開き、`channelAccessToken`,`limitDate`の項目が追加されていることを確認します。
+https://ap-northeast-1.console.aws.amazon.com/dynamodb/home?region=ap-northeast-1#tables:selected=LINEChannelAccessTokenDBTableOrderDev;tab=items
+![](https://storage.googleapis.com/zenn-user-upload/2oeg8n311z7u0pea6ijt4czenkm2)
+
+## APPフォルダのリソースをデプロイ
 
 以下の手順で、アプリ本体をデプロイしてください。
 
 - template.yaml の修正  
-  backend -> APP フォルダ内の template.yaml を開き、EnvironmentMap の dev の以下のパラメータ項目を修正する。
-  ※S3のアクセスログが必要な場合、ACCESS LOG SETTING とコメントされている箇所のコメントを解除してください。
+下記ファイル内のパラメータを修正します。
+https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/APP/template.yaml#L24
 
-  - `LineChannelId` 【LINE チャネルの作成】で作成したMessaging APIチャネルのチャネル ID
-  - `LIFFChannelId` 【LINE チャネルの作成】で作成したLIFFチャネルのチャネル ID
-  - `LiffUrl` 【LINE チャネルの作成】で作成したLIFFアプリの LIFF URL
-  - `LinePayChannelId` 【LINE チャネルの作成】で作成したLINE Payチャネルのチャネル ID
-  - `LinePayChannelSecret` 【LINE チャネルの作成】で作成したLINE Payチャネルのチャネルシークレット  
-  - `LinePayIsSandbox` True or False  
-    ※基本Trueを指定してください。  
-    True: Sandbox環境を使用します。LINEPayによる課金は行われません。  
-    False: LINEPay「テスト加盟店環境」を使用します。一時的に利用者のLINEPay残高が実際に引き落とされた状態となり、一定時間後に利用額が返金されます。
-  - `ItemListDBName` 任意のテーブル名（商品情報を登録するテーブル）
-  - `PaymentInfoDBName` 任意のテーブル名（支払い情報を登録するテーブル）
-  - `LINEChannelAccessTokenDBName` 【2.定期実行バッチ】の手順でデプロイした「短期チャネルアクセストークンを管理するテーブル」のテーブル名
-  - `FrontS3BucketName` 任意のバケット名 ※フロント側モジュールを配置するための S3 バケット名になります。
-  - `LayerVersion` 【1.共通処理レイヤー】の手順にてデプロイしたレイヤーのバージョン番号  
-    例）LayerVersion: 1  
-  - `LoggerLevel` INFO or Debug  
-  - `LambdaMemorySize` Lambdaのメモリサイズ  
-    例）LambdaMemorySize: 128 ※特に変更する必要がない場合、最小サイズの128を指定してください。
-  - `TTL` True or False (注文情報を自動で削除するか否か)
-  - `TTLDay` 任意の数値 （TTLがTrueのとき、予約情報を登録から何日後に削除するか指定。TTLがFalseのとき、0を入れてください。）
-  - `LogS3Bucket` 任意のバケット名(アクセスログを保管するS3の名称)  
-  ※アクセスログが必要な場合のみコメントを解除して記載してください。また、他UseCaseアプリを構築済みの方は、他UseCaseアプリのアクセスログバケット名と別名で指定してください。
-  - `LogFilePrefix` 任意の名称（ログファイルの接頭辞）  
-  ※アクセスログが必要な場合のみコメントを解除して記載してください。
+```
+      LineChannelId: LineChannelId
+      LIFFChannelId: LIFFChannelId
+      LiffUrl: LIFF URL
+      LinePayChannelId: LinePayChannelId
+      LinePayChannelSecret: LinePayChannelSecret
+      LinePayIsSandbox: True
+      PayPayApiKey: PayPayApiKey
+      PayPayApiSecret: PayPayApiSecret
+      PayPayApiMerchantPaymentId: PayPayApiMerchantPaymentId
+      PayPayIsProd: False
+      ItemListDBName: ItemListDB
+      PaymentInfoDBName: PaymentInfoDB
+      LINEChannelAccessTokenDBName: LINEChannelAccessTokenDBTableOrderDev
+      FrontS3BucketName: lineawspaypay20210510＜任意の値(例：メールアドレスの@より上の部分など)＞
+      LayerVersion: 1
+      LoggerLevel: DEBUG
+      LambdaMemorySize: 128
+      # TTL is True:Reservation Data will be deleted at the specified date, False:Data will not be deleted
+      TTL: False
+      # Set day to delete data
+      # If you set TTL: True, data will be deleted in the period specified below.
+      TTLDay: 10
+      # ### ACCESS LOG SETTING ###
+      # LogS3Bucket: S3BucketName for AccessLog
+      # LogFilePrefix: tableorder-sample/
+      # ### ACCESS LOG SETTING ###
+```
 
 - 以下コマンドの実行
 
-```
-cd [backend -> APP のフォルダ]
+```shell
+cd ~/environment/line-api-use-case-table-order/backend/APP
 sam build --use-container
 sam deploy --guided
-※プロファイル情報(default)以外を使用する場合は指定必要 sam deploy --guided --profile xxx
-    Stack Name : 任意のスタック名
+    Stack Name : line-aws-paypay-app-20210510
     AWS Region : ap-northeast-1
     Parameter Environment: dev
     #Shows you resources changes to be deployed and require a 'Y' to initiate deploy Confirm changes before deploy [Y/n]: Y
@@ -158,33 +171,3 @@ sam deploy --guided
 
 - API Gateway endpoint URLとCloudFrontDomainNameのメモ  
 デプロイ成功時にOutPutにて表示されるAPI Gateway endpoint URLとCloudFrontDomainNameのメモを取ってください。
-## エラー対応
-- デプロイ時、以下のようなエラーが出た場合、こちらの手順で解消してください。
-  ```
-  Export with name xxxxx is already exported by stack sam-app. Rollback requested by user.
-  ```
-  - backend -> Layer -> template.yamlを以下を参考に、修正後デプロイ
-    ```
-    Outputs:
-      UseCaseLayerName:
-        Description: "UseCaseLayerDev Layer Name"
-        Value: !FindInMap [EnvironmentMap, !Ref Environment, LayerName]
-        Export:
-          Name: TableOrderLayerDev -> こちらを任意の名称に修正
-    ```
-  - backend -> batch -> template.yamlを、以下の記載を参考に修正する。複数あるので、すべて修正する。
-    ```
-    !ImportValue TableOrderLayerDev -> TableOrderLayerDev を先ほど入力した名称に修正
-    ```
-  - backend -> APP -> template.yamlを、以下の記載を参考に修正する。複数あるので、すべて修正する。
-    ```
-    !ImportValue TableOrderLayerDev -> TableOrderLayerDev を先ほど入力した名称に修正
-    ```
-
-※本番環境構築中の方はこちらのリンクで次の頁へ移動してください  
-[次の頁へ（本番環境）](front-end-construction.md)
-
-※ローカル環境構築中の方はこちらのリンクで次の頁へ移動してください  
-[次の頁へ（ローカル環境）](front-end-development-environment.md)
-
-[目次へ戻る](../README.md)
