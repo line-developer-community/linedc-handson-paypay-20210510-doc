@@ -2,7 +2,6 @@
 title: "Messaging API チャネルの作成"
 ---
 
-# プロバイダーの作成
 # チャネルの作成
 - チャネルの作成
 https://developers.line.me/ja/services/messaging-api/ にアクセス。
@@ -16,6 +15,9 @@ Messaging APIになっているか確認します。
 - プロバイダ
 LINEログインで使用したプロバイダーを選択しましょう。
 ![](https://storage.googleapis.com/zenn-user-upload/ygq2jt08ywonwjy8ki5ap8rirtc7 =500x)
+初めて → 新規プロバイダー作成を選択しプロバイダー名を入力しましょう。
+（LINEという文字は含められません。）
+![](https://storage.googleapis.com/zenn-user-upload/ertfact9pdh71pu2xgwtu2uv2d0y =600x)
 
 - チャネルアイコン
 チャネルアイコンを登録しましょう。（今回は必須ではありません）

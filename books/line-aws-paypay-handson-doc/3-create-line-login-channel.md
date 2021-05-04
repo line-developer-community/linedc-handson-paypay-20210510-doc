@@ -2,8 +2,6 @@
 title: "LINE ログインチャネルの作成"
 ---
 
-# プロバイダーの作成
-
 # チャネル作成
 - ログイン
 https://developers.line.biz/ja/services/line-login/ にアクセス。
