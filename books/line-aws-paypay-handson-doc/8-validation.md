@@ -25,5 +25,6 @@ https://raw.githubusercontent.com/jaws-ug-kanazawa/line-api-use-case-table-order
 データが正常に登録されたか、データレコードができていることを確認してください。
 ![](https://storage.googleapis.com/zenn-user-upload/aod7nnsaredu1n1ujaygr90moaax)
 
-# 
+# 動作確認しましょう！
+全ての準備は整いました！アプリを起動し動作確認してみてください！
 
