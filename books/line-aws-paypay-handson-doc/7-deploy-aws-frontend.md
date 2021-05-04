@@ -3,7 +3,7 @@ title: "フロントエンド構築手順"
 ---
 
 ## 本番（AWS）フロントエンド環境構築
-1. .env ファイルの設定
+- .env ファイルの設定
 
     front/.env ファイルの`xxxxxxxxx`の部分を変更してください。
     - LIFF_ID:LIFF アプリの LIFF IDを入れる
@@ -24,7 +24,7 @@ title: "フロントエンド構築手順"
     AJAX_MODULE=amplify
     ````
 
-1. node_modules インストール
+- node_modules インストール
 
     下記のコマンドを実行し、Node.js の依存パッケージ(node_modules)をインストールしてください。
     ```
@@ -32,7 +32,7 @@ title: "フロントエンド構築手順"
     npm install
     ``` 
 
-1. 静的ビルド
+- 静的ビルド
 
     下記のコマンドを実行し、S3 に配置する静的モジュール生成してください。
     ```
@@ -41,10 +41,10 @@ title: "フロントエンド構築手順"
     ```
     ビルドが完了したら front/dist フォルダが生成されています。 
 
-1. S3 にフロントエンドのモジュールを配置
+- S3 にフロントエンドのモジュールを配置
 
     下記のコマンドを実行し、dist フォルダの中身をS3に配置してください。
     ```
     cd ~/environment/line-api-use-case-table-order/front
-    aws s3 cp ./dist s3://＜バックエンドで指定したバケット名＞ --recursive
+    aws s3 cp ./dist s3://lineawspaypay20210510＜バックエンドで指定したバケット名＞ --recursive
     ```
