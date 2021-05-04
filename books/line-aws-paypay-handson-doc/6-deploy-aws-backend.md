@@ -90,7 +90,8 @@ sam deploy --guided
 下記のURLからDynamoDBのコンソール画面を開き、先ほど作成したテーブルを開き、`項目の作成`ボタンを押します。
 https://ap-northeast-1.console.aws.amazon.com/dynamodb/home?region=ap-northeast-1#tables:selected=LINEChannelAccessTokenDBTableOrderDev;tab=items
 ![](https://storage.googleapis.com/zenn-user-upload/kw2k8nmxpd5gceb493ww8x7hgb1g)
-  - 項目の作成画面でMessaging APIのチャネルの`チャネルID`と`チャネルシークレットキー`を登録します。（`チャネルID`と`チャネルシークレットキー`は[LINE Developers コンソール](https://developers.line.biz/console/)のチャネル基本設定にて確認できます。）
+  - 項目の作成画面でデータを登録
+  項目の作成画面でMessaging APIのチャネルの`チャネルID`と`チャネルシークレットキー`を登録します。（`チャネルID`と`チャネルシークレットキー`は[LINE Developers コンソール](https://developers.line.biz/console/)のチャネル基本設定にて確認できます。）
     - channelId: チャネル ID (文字列)
     - channelSecret: チャネルシークレット(文字列)
       ![チャネルアクセストークンの登録]
