@@ -6,8 +6,8 @@ title: "フロントエンド構築手順"
 - .env ファイルの設定
 
     front/.env ファイルの`xxxxxxxxx`の部分を変更してください。
-    - LIFF_ID:LIFF アプリの LIFF IDを入れる
-    - BASE_URL:AWS APIGatewayのURLを入れる
+    - LIFF_ID: LIFF アプリの LIFF IDを入力
+    - BASE_URL: AWS APIGatewayのURLを入力
 
     ▼ .env ファイル
     ```` 
