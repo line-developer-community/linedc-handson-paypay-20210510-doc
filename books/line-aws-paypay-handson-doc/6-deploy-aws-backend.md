@@ -26,13 +26,15 @@ line-api-use-case-table-order/
 
 ## Layerフォルダのリソースをデプロイ(共通処理)
 
-- template.yaml の修正  
+- template.yaml の修正（今回のハンズオンでは修正不要です。）  
+:::details 参考）修正が必要になった場合
 下記ファイル内のパラメータを修正します。
 https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/Layer/template.yaml#L24
 
 ```
       LayerName: 任意のレイヤー名
 ```
+:::
 
 - 以下のコマンドを実行してデプロイします。
 
@@ -55,7 +57,8 @@ sam deploy --guided
 
 ## batchフォルダのリソースをデプロイ(アクセストークン定期更新・取得バッチ)
 
-- template.yaml の修正  
+- template.yaml の修正（今回のハンズオンでは修正不要です。）  
+:::details 参考）修正が必要になった場合
 下記ファイル内のパラメータを修正します。
 https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/batch/template.yaml#L23
 
@@ -65,6 +68,7 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
       LayerVersion: Layer 1
       LoggerLevel: DEBUG
 ```
+:::
 
 - 以下のコマンドを実行してデプロイします。
 
@@ -120,34 +124,23 @@ https://ap-northeast-1.console.aws.amazon.com/dynamodb/home?region=ap-northeast-
 - template.yaml の修正  
 下記ファイル内のパラメータを修正します。
 https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/APP/template.yaml#L24
-
+    - LineChannelId: Messaging API チャネルのチャネル IDを入力
+    - LIFFChannelId: LINEログイン チャネルのチャネル IDを入力
+    - LiffUrl: LIFF URLを入力(https://liff.line.me/xxxxxxxxx-xxxxxxxxx)
+    - PayPayApiKey: PayPayサンドボックス利用設定でメモしたAPIキーを入力
+    - PayPayApiSecret: PayPayサンドボックス利用設定でメモしたシークレットキーを入力
+    - PayPayApiMerchantId: PayPayサンドボックス利用設定でメモしたMERCHANT IDを入力
+    - PayPayIsProd: Falseを指定
+    - FrontS3BucketName: lineawspaypay20210510＜任意の値で全て英数字小文字(例：メールアドレスの@より上の部分など)＞
 ```
       LineChannelId: LineChannelId
       LIFFChannelId: LIFFChannelId
-      LiffUrl: LIFF URL
-      LinePayChannelId: LinePayChannelId
-      LinePayChannelSecret: LinePayChannelSecret
-      LinePayIsSandbox: True
+      LiffUrl: https://liff.line.me/xxxxxxxxx-xxxxxxxxx
       PayPayApiKey: PayPayApiKey
       PayPayApiSecret: PayPayApiSecret
       PayPayApiMerchantId: PayPayApiMerchantId
       PayPayIsProd: False
-      ItemListDBName: ItemListDB
-      PaymentInfoDBName: PaymentInfoDB
-      LINEChannelAccessTokenDBName: LINEChannelAccessTokenDBTableOrderDev
-      FrontS3BucketName: lineawspaypay20210510＜任意の値で全て英数字小文字(例：メールアドレスの@より上の部分など)＞
-      LayerVersion: 1
-      LoggerLevel: DEBUG
-      LambdaMemorySize: 128
-      # TTL is True:Reservation Data will be deleted at the specified date, False:Data will not be deleted
-      TTL: False
-      # Set day to delete data
-      # If you set TTL: True, data will be deleted in the period specified below.
-      TTLDay: 10
-      # ### ACCESS LOG SETTING ###
-      # LogS3Bucket: S3BucketName for AccessLog
-      # LogFilePrefix: tableorder-sample/
-      # ### ACCESS LOG SETTING ###
+      FrontS3BucketName: S3 Name for FrontEnd
 ```
 
 - 以下のコマンドを実行してデプロイします。
