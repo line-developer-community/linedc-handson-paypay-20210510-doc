@@ -1,3 +1,7 @@
+---
+title: "AWSの開発環境作成・準備（Cloud9）"
+---
+
 # 概要
 本日のハンズオンではCloud9の環境を、開発作業の場所として使用します。 Cloud9は、コードの記述・実行・デバッグが行えるクラウドベースの統合開発環境（IDE）です。 
 
@@ -55,5 +59,5 @@ tmpfs           104M     0  104M   0% /run/user/0
 
 ----
 参考）
-* https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/cloud9/docs/cloud9.md
-* https://docs.aws.amazon.com/cloud9/latest/user-guide/move-environment.html
+- https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/cloud9/docs/cloud9.md
+- https://docs.aws.amazon.com/cloud9/latest/user-guide/move-environment.html
