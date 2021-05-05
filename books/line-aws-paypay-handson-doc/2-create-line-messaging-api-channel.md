@@ -13,7 +13,7 @@ Messaging APIになっているか確認します。
 ![](https://storage.googleapis.com/zenn-user-upload/dnrwequtv83nuabrkdtxm0i5nriv =500x)
 
 - プロバイダ
-LINEログインで使用したプロバイダーを選択しましょう。
+既にプロバイダーを作っている場合 → 利用するプロバイダーを選択しましょう。
 ![](https://storage.googleapis.com/zenn-user-upload/ygq2jt08ywonwjy8ki5ap8rirtc7 =500x)
 初めて → 新規プロバイダー作成を選択しプロバイダー名を入力しましょう。
 （LINEという文字は含められません。）
