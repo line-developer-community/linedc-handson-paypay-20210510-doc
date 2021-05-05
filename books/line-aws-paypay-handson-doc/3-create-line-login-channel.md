@@ -3,17 +3,6 @@ title: "LINE ログインチャネルの作成"
 ---
 
 # チャネル作成
-- ログイン
-https://developers.line.biz/ja/services/line-login/ にアクセス。
-「今すぐはじめよう」のボタンを押して進めていきましょう。
-![](https://storage.googleapis.com/zenn-user-upload/kk09ycv3181bxkla6mi8vozaysvd)
-
-「LINEアカウントでログイン」を押してください。
-![](https://storage.googleapis.com/zenn-user-upload/70l8v8t5cnxm8n9mnehecct8ade5 =250x)
-
-LINEのログインを求められるのでログインしてください。
-![](https://storage.googleapis.com/zenn-user-upload/s9upjzix36rvx4rupi00ardmz0s6 =250x)
-
 - チャネルの種類
 LINEログインになっているか確認します。
 ![](https://storage.googleapis.com/zenn-user-upload/tu6u2hc6g83thpcqgrdkw3se4ph7 =500x)
