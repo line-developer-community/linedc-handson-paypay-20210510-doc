@@ -42,12 +42,15 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
 cd ~/environment/line-api-use-case-table-order/backend/Layer
 sam build --use-container
 sam deploy --guided
-    Stack Name : line-aws-paypay-layer-20210510
-    AWS Region : ap-northeast-1
-    Parameter Environment: dev
-    #Shows you resources changes to be deployed and require a 'Y' to initiate deploy Confirm changes before deploy [Y/n]: Y
-    #SAM needs permission to be able to create roles to connect to the resources in your template Allow SAM CLI IAM role creation[Y/n]: Y
-    Save arguments to samconfig.toml [Y/n]: Y
+
+    Stack Name [sam-app]: line-aws-paypay-layer-20210510
+    AWS Region [ap-northeast-1]: ap-northeast-1
+    Parameter Environment [dev]: dev
+    #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+    Confirm changes before deploy [y/N]: y
+    #SAM needs permission to be able to create roles to connect to the resources in your template
+    Allow SAM CLI IAM role creation [Y/n]: Y
+    Save arguments to configuration file [Y/n]: Y
 
     SAM configuration file [samconfig.toml]: 入力せずEnter 
     SAM configuration environment [default]: 入力せずEnter
@@ -76,13 +79,15 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
 cd ~/environment/line-api-use-case-table-order/backend/batch
 sam build --use-container
 sam deploy --guided
-    Stack Name : line-aws-paypay-batch-20210510
-    AWS Region : ap-northeast-1
-    Parameter Environment: dev
-    #Shows you resources changes to be deployed and require a 'Y' to initiate deploy Confirm changes before deploy [Y/n]: Y
-    #SAM needs permission to be able to create roles to connect to the resources in your template Allow SAM CLI IAM role creation[Y/n]: Y
-    Save arguments to samconfig.toml [Y/n]: Y
-
+    Stack Name [sam-app]: line-aws-paypay-batch-20210510
+    AWS Region [ap-northeast-1]: ap-northeast-1
+    Parameter Environment [dev]: dev
+    #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+    Confirm changes before deploy [y/N]: y
+    #SAM needs permission to be able to create roles to connect to the resources in your template
+    Allow SAM CLI IAM role creation [Y/n]: Y
+    Save arguments to configuration file [Y/n]: Y
+        
     SAM configuration file [samconfig.toml]: 入力せずEnter 
     SAM configuration environment [default]: 入力せずEnter
     
@@ -98,7 +103,6 @@ https://ap-northeast-1.console.aws.amazon.com/dynamodb/home?region=ap-northeast-
   項目の作成画面でMessaging APIのチャネルの`チャネルID`と`チャネルシークレットキー`を登録します。（`チャネルID`と`チャネルシークレットキー`は[LINE Developers コンソール](https://developers.line.biz/console/)のチャネル基本設定にて確認できます。）
     - channelId: チャネル ID (文字列)
     - channelSecret: チャネルシークレット(文字列)
-      ![チャネルアクセストークンの登録]
 ![](https://storage.googleapis.com/zenn-user-upload/ue8y75t0geax37ta0k5rjg1flx8n)
 ![](https://storage.googleapis.com/zenn-user-upload/06suku5nij1vjehxdvssfuen3tdx)
       
@@ -154,8 +158,8 @@ sam deploy --guided
     Parameter Environment: dev
     #Shows you resources changes to be deployed and require a 'Y' to initiate deploy Confirm changes before deploy [Y/n]: Y
     #SAM needs permission to be able to create roles to connect to the resources in your template Allow SAM CLI IAM role creation[Y/n]: Y
-    ××××× may not have authorization defined, Is this okay? [y/N]: y (全てyと入力)  
-    Save arguments to samconfig.toml [Y/n]: Y
+    ××××× may not have authorization defined, Is this okay? [y/N]: y (約10個全てyと入力)  
+    Save arguments to configuration file [Y/n]: Y
 
     SAM configuration file [samconfig.toml]: 入力せずEnter 
     SAM configuration environment [default]: 入力せずEnter
