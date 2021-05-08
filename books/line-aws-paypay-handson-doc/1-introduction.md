@@ -9,7 +9,13 @@ title: "はじめに"
 - Chrome ブラウザのインストール https://www.google.co.jp/intl/ja/chrome/browser/welcomeback.html
 
 # システム構成図
+![](https://storage.googleapis.com/zenn-user-upload/jak5xkwup33jv6mxuwhswly7auko)
 
 # アプリのデモ
-（本日はLINE Payはハンズオンの内容から除外しています。）
+（本コンテンツではLINE Payはハンズオンの内容から除外しています。）
 https://youtu.be/e15n8fqvQqc
+
+:::message alert
+PayPayロゴなどの素材については、公式のガイドラインなどをご参照の上、ご利用ください。
+https://paypay.ne.jp/merchant-share/logo
+:::
