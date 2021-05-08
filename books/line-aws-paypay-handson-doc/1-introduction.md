@@ -8,7 +8,7 @@ title: "はじめに"
 - [AWS](https://aws.amazon.com/jp/)アカウントの準備（クレジットカードの登録も必要になるのでこちらは優先的に登録まで済ませておきましょう）
 - Chrome ブラウザのインストール https://www.google.co.jp/intl/ja/chrome/browser/welcomeback.html
 
-# システム構成図
+# システム図 
 ![](https://storage.googleapis.com/zenn-user-upload/jak5xkwup33jv6mxuwhswly7auko)
 
 # アプリのデモ
