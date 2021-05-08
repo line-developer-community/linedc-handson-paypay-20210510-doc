@@ -38,6 +38,10 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
 
 - 以下のコマンドを実行してデプロイします。
 
+:::message
+下記のコマンドをコピペして実行しましょう！
+:::
+
 ```shell
 cd ~/environment/line-api-use-case-table-order/backend/Layer
 sam build --use-container
@@ -74,6 +78,10 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
 :::
 
 - 以下のコマンドを実行してデプロイします。
+
+:::message
+下記のコマンドをコピペして実行しましょう！
+:::
 
 ```shell
 cd ~/environment/line-api-use-case-table-order/backend/batch
@@ -148,6 +156,10 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
 ```
 
 - 以下のコマンドを実行してデプロイします。
+
+:::message
+下記のコマンドをコピペして実行しましょう！
+:::
 
 ```shell
 cd ~/environment/line-api-use-case-table-order/backend/APP

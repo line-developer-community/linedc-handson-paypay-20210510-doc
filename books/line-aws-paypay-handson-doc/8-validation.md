@@ -51,7 +51,7 @@ Messaging API のチャネル基本設定画面でLINE Official Account Manager�
 # データの登録
 - DynamoDBのコンソール画面にアクセス
 下記のURLからDynamoDBのコンソール画面を開き、先ほど作成したテーブルを開き、項目の作成ボタンを押します。
-https://ap-northeast-1.console.aws.amazon.com/dynamodb/home?region=ap-northeast-1#tables:selected=ItemListDBName;tab=items
+https://ap-northeast-1.console.aws.amazon.com/dynamodb/home?region=ap-northeast-1#tables:selected=ItemListDB;tab=items
 ![](https://storage.googleapis.com/zenn-user-upload/5xtnded86oxfy70aahw4ilgcoh8r)
 
 - 項目の作成画面でデータを登録

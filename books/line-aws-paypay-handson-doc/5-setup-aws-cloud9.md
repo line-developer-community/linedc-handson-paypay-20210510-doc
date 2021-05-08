@@ -16,7 +16,7 @@ Instance typeはt3.smallを選択してください。（あとは基本的に�
 ![](https://storage.googleapis.com/zenn-user-upload/q58c5pnl0ccdv3yv0kn8jdng50n3)
 VPCは特別な理由が無ければdefaultのものを選択するようにしてください。
 ![](https://storage.googleapis.com/zenn-user-upload/6cv3qvohhfu9i7zqqzn73mcg5pz5)
-:::message
+:::message alert
 defaultのVPCが無い場合は下記の方法でdefaultのVPCを作成してください。
 :::
 :::details defaultのVPC作成方法
@@ -38,7 +38,9 @@ git clone https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order.git
 # ディスク容量の拡張
 
 Cloud9の初期EBSサイズは10GiBです。SAMを利用する際に10GBを超える容量のサイズが必要となるため、以下の方法にてEBSボリュームサイズを20GBに変更してください。
-
+:::message
+下記のコマンドをコピペして実行しましょう！
+:::
 ```
 cd ~/environment/line-api-use-case-table-order/tools/
 chmod +x resize.sh
@@ -46,6 +48,12 @@ chmod +x resize.sh
 ```
 
 df -Hのコマンドを実行し、/dev/xvda1が20GiB(22GB)になっていることを確認してください。
+:::message
+下記のコマンドをコピペして実行しましょう！
+:::
+```
+df -H
+```
 ```
 Filesystem      Size  Used Avail Use% Mounted on
 devtmpfs        497M     0  497M   0% /dev
