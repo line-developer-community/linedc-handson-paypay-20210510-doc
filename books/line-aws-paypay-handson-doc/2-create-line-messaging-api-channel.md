@@ -57,6 +57,3 @@ Messaging APIになっているか確認します。
 - QRコードで友だち追加
 LINE Developersに戻り「Messaging API設定」タブに移動し、QRコードを読み取って、友だち追加をしましょう。
 ![](https://storage.googleapis.com/zenn-user-upload/zixpwvkcvi2xrjj5w0xvt4kl30z5)
-
-- 確認
-リッチメニューが設置されていてウェルカムメッセージが来たら成功です。
