@@ -1,12 +1,16 @@
 title: "【LIFF/ミニアプリ】LINE×AWS×PayPayでテーブルオーダーを作ってみよう！ハンズオン"
 summary: |-
-  LINEで〇〇を作ってみようシリーズ！
+  本資料は下記のハンズオンイベントで使用したものです。
+  https://linedevelopercommunity.connpass.com/event/207867/
+  
+  あくまでもハンズオン用の資料であり、本番運用などを目的としたものではありません。
+  みなさまのさらなる応用や発展の一助になれば幸いです。
+  
+  また、本資料は下記を参考にしてますのでご参照の上、ご利用いただければと思います。
+  https://github.com/line/line-api-use-case-table-order
 
-  今回は新型コロナウイルスの影響により全国の飲食店で導入が進むテーブルオーダーソリューション。
-
-  LINE API Use Caseにて公式に公開されている実装をベースに、決済は既に何度も勉強会で取り上げているLINE Pay APIではなく、PayPayのシステムを利用して実装します！
 topics: ["line"]
-published: false
+published: true
 price: 0
 chapters:
   - 1-introduction
