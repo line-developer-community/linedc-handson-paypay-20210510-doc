@@ -26,7 +26,7 @@ line-api-use-case-table-order/
 
 ## Layerフォルダのリソースをデプロイ(共通処理)
 
-- template.yaml の修正（今回のハンズオンでは修正不要です。）  
+- template.yaml の修正（今回のハンズオンでは修正せずデフォルトの値でも大丈夫です。）
 :::details 参考）修正が必要になった場合
 下記ファイル内のパラメータを修正します。
 https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/Layer/template.yaml#L24
@@ -64,9 +64,11 @@ sam deploy --guided
     Deploy this changeset? [y/N]: y
 ```
 
+本ハンズオンではLayerのデプロイは１回だけを想定してますが、２回以上デプロイを実施した場合は以降の手順で `LayerVersion` の値を修正する必要があります。
+
 ## batchフォルダのリソースをデプロイ(アクセストークン定期更新・取得バッチ)
 
-- template.yaml の修正（今回のハンズオンでは修正不要です。）  
+- template.yaml の修正（今回のハンズオンでは修正せずデフォルトの値でも大丈夫です。）
 :::details 参考）修正が必要になった場合
 下記ファイル内のパラメータを修正します。
 https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/backend/batch/template.yaml#L23
@@ -149,6 +151,7 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
     - PayPayApiMerchantId: PayPayサンドボックス利用設定でメモしたMERCHANT IDを入力
     - PayPayIsProd: Falseを指定
     - FrontS3BucketName: lineawspaypay20210510＜任意の値で全て英数字小文字(例：メールアドレスの@より上の部分など)＞
+    - LayerVersion: 1 (Layerのバージョンを指定。今回は基本的に1でOK)
 ```
       LineChannelId: LineChannelId
       LIFFChannelId: LIFFChannelId
@@ -158,6 +161,7 @@ https://github.com/jaws-ug-kanazawa/line-api-use-case-table-order/blob/master/ba
       PayPayApiMerchantId: PayPayApiMerchantId
       PayPayIsProd: False
       FrontS3BucketName: S3 Name for FrontEnd
+      LayerVersion: 1
 ```
 
 - 以下のコマンドを実行してデプロイします。
