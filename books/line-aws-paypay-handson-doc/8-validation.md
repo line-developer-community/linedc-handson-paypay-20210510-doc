@@ -65,4 +65,6 @@ https://raw.githubusercontent.com/jaws-ug-kanazawa/line-api-use-case-table-order
 
 # 動作確認しましょう！
 
+全ての準備は整いました！アプリを起動し動作確認してみてください！
+
 https://youtu.be/TyCiag2ekIc
